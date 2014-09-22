@@ -251,7 +251,7 @@
         return rstr2hex(raw_hmac_md5(k, d));
     }
     
-    $.md5 = function (string, key, raw) {
+    $.rehanmd5 = function (string, key, raw) {
         if (!key) {
             if (!raw) {
                 return hex_md5(string);
