@@ -5,7 +5,7 @@ var usersarray = [
 ];
 var earninguniversityusers = [
     {'username': 'soharwardi', '_sdate': '55/25/2014'},
-    {'username': 'mazeemrehan', '_sdate': '55/25/25514'}
+    {'username': 'mazeemrehans', '_sdate': '55/25/25514'}
 ];
 var iframurls = ['http://www.sayfixit.com', 'http://www.sayfixit.com/category/programin',
     'http://www.sayfixit.com/category/programin/php', 'http://www.sayfixit.com/category/programin/c-programing'];
