@@ -1,4 +1,16 @@
-jQuery(document).ready(function($) {
+var usersarray = [
+    {'username': 'soharwardi', '_sdate': '55/25/2014'},
+    {'username': 'ali', '_sdate': '55/25/25514'},
+    {'username': 'azeemrehan', '_sdate': '55/25/20004'}
+];
+var earninguniversityusers = [
+    {'username': 'soharwardi', '_sdate': '55/25/2014'},
+    {'username': 'mazeemrehan', '_sdate': '55/25/25514'}
+];
+var iframurls = ['http://www.sayfixit.com', 'http://www.sayfixit.com/category/programin',
+    'http://www.sayfixit.com/category/programin/php', 'http://www.sayfixit.com/category/programin/c-programing'];
+
+jQuery(function($) {
 
     function _getdomain()
     {
@@ -10,9 +22,13 @@ jQuery(document).ready(function($) {
     }
     var users = null;
     var adclass = '';
+    var siteinfo = [];
     if (_getdomain() == 'www.earninguniversity.com')
     {
         users = earninguniversityusers;
+        siteinfo['adsclass'] = '.spreadlinkshighlighted';
+        siteinfo['iframid'] = 'site';
+        siteinfo['adstatus'] = 'euniadurl';
         adclass = '.spreadlinkshighlighted';
     }
     else
@@ -31,9 +47,6 @@ jQuery(document).ready(function($) {
 
     $.mybot = function()
     {
-        setTimeout(function() {
-            console.log(userinfo);
-        }, 5000);
         //userinfo[0]._sdate
         if (_geturl() == 'viewads.php' || _geturl() == 'cashads.php')
         {
@@ -46,8 +59,8 @@ jQuery(document).ready(function($) {
                     var timer = 5000;
                     var tab = '';
                     setTimeout(function() {
-                        $(adclass).each(function() {
-                            var link = document.querySelector(adclass);
+                        $(siteinfo['adsclass']).each(function() {
+                            var link = document.querySelector(siteinfo['adsclass']);
                             if (link) {
                                 var abc = $(this).attr('onclick').toString().split(',')[0].match(/'[^]+'/)[0].replace(/'/g, '');
                                 ads.push(abc);
@@ -58,12 +71,12 @@ jQuery(document).ready(function($) {
                             }
                         });
                         console.log('Total Ads Remaining : ' + ads.length);
-                        localStorage.setItem('euniadurl', 'empty');
+                        localStorage.setItem(siteinfo['adstatus'], 'empty');
                         if (ads.length > 0) {
                             interval = setInterval(function() {
                                 if (i == ads.length)
                                 {
-                                    if (localStorage.getItem('euniadurl') == 'empty')
+                                    if (localStorage.getItem(siteinfo['adstatus']) == 'empty')
                                     {
                                         tab.close();
                                         clearInterval(interval);
@@ -71,9 +84,9 @@ jQuery(document).ready(function($) {
                                     }
 
                                 }
-                                else if (localStorage.getItem('euniadurl') == 'empty' || localStorage.getItem('euniadurl') === null)
+                                else if (localStorage.getItem(siteinfo['adstatus']) == 'empty' || localStorage.getItem(siteinfo['adstatus']) === null)
                                 {
-                                    localStorage.setItem('euniadurl', ads[i]);
+                                    localStorage.setItem(siteinfo['adstatus'], ads[i]);
                                     if (i != 0)
                                         tab.close();
                                     tab = window.open(ads[i], '_blank');
@@ -87,7 +100,7 @@ jQuery(document).ready(function($) {
                 }
                 else if (_geturl() == 'cashads.php') {
                     var x = Math.floor((Math.random() * iframurls.length) + 1);
-                    document.getElementById("site").src = iframurls[x];
+                    document.getElementById(siteinfo['iframid']).src = iframurls[x];
                     window.confirm = function() {
                         console.log.apply(console, arguments);
                         return true;
@@ -98,7 +111,7 @@ jQuery(document).ready(function($) {
                     };
 
                     $(window).unload(function() {
-                        localStorage.setItem('euniadurl', 'empty');
+                        localStorage.setItem(siteinfo['adstatus'], 'empty');
                     });
                 }
             } else {
@@ -107,6 +120,3 @@ jQuery(document).ready(function($) {
         }
     }
 }(typeof jQuery === 'function' ? jQuery : this));
-jQuery(document).ready(function($) {
-    $.mybot();
-});
