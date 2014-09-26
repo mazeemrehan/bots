@@ -26,3 +26,12 @@ else
     users = usersarray;
     adclass = '.spreadlinkshighlighted';
 }
+
+var userinfo = users.filter(function(item) {
+        var username = $.cookie('usNick');
+        console.log(username);
+        if (item.username.indexOf(username) >= 0) {
+            return true;
+        }
+        return false;
+    });
