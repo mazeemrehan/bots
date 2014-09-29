@@ -4,7 +4,7 @@ var usersarray = [
     {'username': 'azeemrehan', '_sdate': '55/25/20004'}
 ];
 var earninguniversityusers = [
-    {'username': 'soharwaradi', '_sdate': 'universityearning muderser'},
+    {'username': 'soharwardi', '_sdate': 'universityearning muderser'},
     {'username': 'mazeemrehan', '_sdate': '55/25/25514'},
     {'username': 'imran102', '_sdate': '55/25/25514'}
 ];
